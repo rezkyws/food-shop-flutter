@@ -1,6 +1,6 @@
-# submission
+# Food Shop App
 
-A project for dicoding project submission
+Actually, this app is intended for submitting project in order passed dicoding course
 
 ## Getting Started
 
