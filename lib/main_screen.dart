@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery
-        .of(context)
-        .size;
+    // Size screenSize = MediaQuery
+    //     .of(context)
+    //     .size;
     // Orientation orientation = MediaQuery.of(context).orientation;
 
     return Scaffold(
@@ -54,12 +55,35 @@ class MainScreen extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 50, left: 10),
+                            padding: const EdgeInsets.only(top: 50, left: 15),
                             child: Align(
                               alignment: Alignment.centerLeft,
-                              child: Text('Pizza'),
+                              child: Text(
+                                'Pizza',
+                                style: TextStyle(fontFamily: 'Nexa', fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
                             ),
-                          )
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 100, left: 15),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Chicken, Cheese',
+                                style: TextStyle(fontFamily: 'Nexa', fontSize: 15, fontStyle: FontStyle.normal),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 10, left: 15),
+                            child: Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Text(
+                                '\$\8',
+                                style: TextStyle(fontFamily: 'Nexa', fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                       // clipBehavior: Clip.antiAliasWithSaveLayer,
