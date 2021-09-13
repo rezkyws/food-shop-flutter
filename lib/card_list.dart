@@ -12,7 +12,46 @@ class CardList extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Food List'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.notes,
+                  color: Colors.black,
+                )),
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.account_circle_outlined,
+                  color: Colors.black,
+                ))
+          ],
+        ),
+        // actions: <Widget>[
+        //   Row(
+        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //     // crossAxisAlignment: CrossAxisAlignment.start,
+        //     children: [
+        //       IconButton(
+        //           onPressed: () {},
+        //           icon: Icon(
+        //             Icons.notes,
+        //             color: Colors.black,
+        //           )),
+        //       IconButton(
+        //           onPressed: () {},
+        //           icon: Icon(
+        //             Icons.account_circle_outlined,
+        //             color: Colors.black,
+        //       ))
+        //     ],
+        //   )
+        // ],
+        // title: Text('Food List', style: TextStyle(color: Colors.black),),
+        backgroundColor: Colors.white,
       ),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
