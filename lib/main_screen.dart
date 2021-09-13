@@ -7,12 +7,12 @@ import 'package:submission/card_list.dart';
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
 
-  static const String _title = 'Food List';
+  // static const String _title = 'Food List';
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: _title,
+      // title: _title,
       home: BottomNav(),
     );
   }
