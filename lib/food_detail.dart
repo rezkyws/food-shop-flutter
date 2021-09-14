@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 class DetailScreen extends StatelessWidget {
@@ -9,63 +10,98 @@ class DetailScreen extends StatelessWidget {
       //   title: Text('Detail Food'),
       // ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Stack(
-              children: [
-                Image.asset('images/burger.jpg'),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.transparent,
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.navigate_before,
-                            color: Colors.black,
-                          ),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ),
-                      FavouriteButton(),
-                    ],
-                  ),
-                )
-              ],
-            ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Stack(
                 children: [
+                  Image.asset('images/burger.jpg'),
                   Padding(
-                    padding: EdgeInsets.all(20),
-                    child: Text(
-                      'Pizza',
-                      style: TextStyle(fontFamily: 'Nexa', fontSize: 35, fontWeight: FontWeight.bold),
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.navigate_before,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ),
+                        FavouriteButton(),
+                      ],
                     ),
-                  ),
-                  CustomPaint(
-                    size: Size(200,100),
-                    painter: CirclePainter(),
                   )
                 ],
               ),
-            ),
-            Container(
-              child: Padding(
-                padding: EdgeInsets.all(20),
-                child: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  style: TextStyle(fontFamily: 'Nexa', fontSize: 20, fontWeight: FontWeight.normal),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(20),
+                      child: Text(
+                        'Pizza',
+                        style: TextStyle(fontFamily: 'Nexa', fontSize: 35, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Stack(
+                      children: [
+                        CustomPaint(
+                          size: Size(200,100),
+                          painter: CirclePainter(),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.only(top: 20),
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.remove,
+                                    color: Colors.white,
+                                  )
+                              ),
+                            ),
+                            QuantityTextField(),
+                            Padding(
+                              padding: EdgeInsets.only(top: 20),
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+                                  )
+                              ),
+                            ),
+                            // Positioned(
+                            //     left: 100,
+                            //     child: Icon(Icons.home, color: Colors.black, size: 20,)
+                            // ),
+                          ],
+                        )
+                      ],
+                    )
+                  ],
                 ),
               ),
-            )
-          ],
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Text(
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    style: TextStyle(fontFamily: 'Nexa', fontSize: 20, fontWeight: FontWeight.normal),
+                  ),
+                ),
+              )
+            ],
+          ),
         )
       )
     );
@@ -118,5 +154,50 @@ class CirclePainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
+  }
+}
+
+class QuantityTextField extends StatefulWidget {
+  const QuantityTextField({Key? key}) : super(key: key);
+
+  @override
+  _QuantityTextFieldState createState() => _QuantityTextFieldState();
+}
+
+class _QuantityTextFieldState extends State<QuantityTextField> {
+  final _formKey = GlobalKey<FormState>();
+  // String _quantity = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(top: 10),
+      width: 85,
+      height: 50,
+      child: TextField(
+        textAlign: TextAlign.center,
+        autocorrect: false,// to get rid span warning
+        keyboardType: TextInputType.visiblePassword, // to get rid span warning
+        key: _formKey,
+        // keyboardType: TextInputType.number,
+        inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.digitsOnly
+        ], // Only numbers can be enter
+        // maxLength: 10,
+        decoration: InputDecoration(
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.orange),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.orange)
+          )
+        ),
+        onChanged: (String value) {
+          setState(() {
+            // _quantity = value;
+          });
+        },
+      ),
+    );
   }
 }
