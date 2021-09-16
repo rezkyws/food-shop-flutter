@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -57,35 +56,11 @@ class DetailScreen extends StatelessWidget {
                           size: Size(200,100),
                           painter: CirclePainter(),
                         ),
-                        Row(
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.only(top: 20),
-                              child: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.remove,
-                                    color: Colors.white,
-                                  )
-                              ),
-                            ),
-                            QuantityTextField(),
-                            Padding(
-                              padding: EdgeInsets.only(top: 20),
-                              child: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.add,
-                                    color: Colors.white,
-                                  )
-                              ),
-                            ),
+                        QuantityButton(),
                             // Positioned(
                             //     left: 100,
                             //     child: Icon(Icons.home, color: Colors.black, size: 20,)
                             // ),
-                          ],
-                        )
                       ],
                     )
                   ],
@@ -157,47 +132,95 @@ class CirclePainter extends CustomPainter {
   }
 }
 
-class QuantityTextField extends StatefulWidget {
-  const QuantityTextField({Key? key}) : super(key: key);
+class QuantityButton extends StatefulWidget {
+  const QuantityButton({Key? key}) : super(key: key);
 
   @override
-  _QuantityTextFieldState createState() => _QuantityTextFieldState();
+  _QuantityButtonState createState() => _QuantityButtonState();
 }
 
-class _QuantityTextFieldState extends State<QuantityTextField> {
+class _QuantityButtonState extends State<QuantityButton> {
   final _formKey = GlobalKey<FormState>();
-  // String _quantity = '';
+  // TextEditingController myController = TextEditingController()..text = _quantity.toString();
+  // int _quantity = 0;
+
+  TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.text = "0"; // Setting the initial value for the field.
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 10),
-      width: 85,
-      height: 50,
-      child: TextField(
-        textAlign: TextAlign.center,
-        autocorrect: false,// to get rid span warning
-        keyboardType: TextInputType.visiblePassword, // to get rid span warning
-        key: _formKey,
-        // keyboardType: TextInputType.number,
-        inputFormatters: <TextInputFormatter>[
-          FilteringTextInputFormatter.digitsOnly
-        ], // Only numbers can be enter
-        // maxLength: 10,
-        decoration: InputDecoration(
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.orange),
+    return Row(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(top: 20),
+          child: IconButton(
+              onPressed: () {
+                int currentValue = int.parse(_controller.text);
+                setState(() {
+                  if(currentValue > 0) {
+                    currentValue--;
+                    _controller.text = currentValue.toString();
+                  }
+                });
+              },
+              icon: Icon(
+                Icons.remove,
+                color: Colors.white,
+              )
           ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.orange)
-          )
         ),
-        onChanged: (String value) {
-          setState(() {
-            // _quantity = value;
-          });
-        },
-      ),
+        Container(
+          padding: EdgeInsets.only(top: 10),
+          width: 85,
+          height: 50,
+          child: TextFormField(
+            controller: _controller,
+            textAlign: TextAlign.center,
+            autocorrect: false,// to get rid span warning
+            keyboardType: TextInputType.visiblePassword, // to get rid span warning
+            key: _formKey,
+            // keyboardType: TextInputType.number,
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.digitsOnly
+            ], // Only numbers can be enter
+            // maxLength: 10,
+            decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.orange),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.orange)
+                )
+            ),
+            // onChanged: (text) {
+            //   setState(() {
+            //     _quantity = int.parse(text);
+            //   });
+            // },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 20),
+          child: IconButton(
+              onPressed: () {
+                int currentValue = int.parse(_controller.text);
+                setState(() {
+                  currentValue++;
+                  _controller.text = currentValue.toString();
+                });
+              },
+              icon: Icon(
+                Icons.add,
+                color: Colors.white,
+              )
+          ),
+        ),
+      ]
     );
   }
 }
