@@ -28,7 +28,6 @@ var foodList = [
     imageAsset: 'images/ayam_goreng.jpg',
     categories: [
       'Chicken',
-      'Fried',
       'Indonesia'
     ],
   ),
