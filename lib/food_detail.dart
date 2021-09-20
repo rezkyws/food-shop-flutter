@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:submission/model/food.dart';
 
 class DetailScreen extends StatelessWidget {
+  final Food food;
+
+  DetailScreen({required this.food});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +20,7 @@ class DetailScreen extends StatelessWidget {
             children: <Widget>[
               Stack(
                 children: [
-                  Image.asset('images/burger.jpg'),
+                  Image.asset(food.imageAsset),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -43,11 +48,13 @@ class DetailScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(20),
-                      child: Text(
-                        'Pizza',
-                        style: TextStyle(fontFamily: 'Nexa', fontSize: 35, fontWeight: FontWeight.bold),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.all(20),
+                        child: Text(
+                          food.name,
+                          style: TextStyle(fontFamily: 'Nexa', fontSize: 35, fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                     Stack(
@@ -74,11 +81,16 @@ class DetailScreen extends StatelessWidget {
                     style: TextStyle(fontFamily: 'Nexa', fontSize: 20, fontWeight: FontWeight.normal),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         )
       )
+          // floatingActionButton: FloatingActionButton.extended(
+          //   onPressed: () {},
+          //   label: const Text('add to bag'),
+          //   icon: ,
+          // ),
     );
   }
 }
