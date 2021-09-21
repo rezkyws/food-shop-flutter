@@ -91,21 +91,21 @@ var foodList = [
       'Fried',
     ],
   ),
-  Food(
-    name: 'Spagetti',
-    price: 4,
-    imageAsset: 'images/spageti.jpg',
-    categories: [
-      'Fried',
-    ],
-  ),
-  Food(
-    name: 'Suhsi',
-    price: 8,
-    imageAsset: 'images/suhsi.jpg',
-    categories: [
-      'Japanese',
-      'Seafood'
-    ],
-  ),
+  // Food(
+  //   name: 'Spagetti',
+  //   price: 4,
+  //   imageAsset: 'images/spageti.jpg',
+  //   categories: [
+  //     'Fried',
+  //   ],
+  // ),
+  // Food(
+  //   name: 'Suhsi',
+  //   price: 8,
+  //   imageAsset: 'images/suhsi.jpg',
+  //   categories: [
+  //     'Japanese',
+  //     'Seafood'
+  //   ],
+  // ),
 ];
