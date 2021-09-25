@@ -1,6 +1,14 @@
 # Food Shop App
 
-Actually, this app is intended for submitting project in order passed dicoding course
+Food shop mobile app (front-end) built with flutter
+* Has screen for showing list of foods (gridview)
+* Has screen for showing the detail of the food where it has favourite and quantity button
+* Has bottom navigation
+
+Screenshot of the app :
+
+![list foods](images/flutter_list.png)
+![list foods](images/flutter_detail.png)
 
 ## Getting Started
 
